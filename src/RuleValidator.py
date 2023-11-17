@@ -5,9 +5,11 @@ class RuleValidator:
     """    
     def __init__(self, description_in) -> None:
         self.description = description_in
+        # TODO - implement points for each rule ?
+        self.points = 0
     
     @abstractmethod
-    def check():
+    def check() -> str:
         pass
 
 

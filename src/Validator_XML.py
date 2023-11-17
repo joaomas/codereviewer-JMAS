@@ -17,9 +17,34 @@ class Validator_XML(Validator):
     def run_validator(self):
         super().run_validator()
         
+        str_checks = ''
         xml = self.parser_xml.parse()
-        # TODO loop over xml structure
-        # for each rule check rule
+        
+         
+        # TODO get code from QA
+        # from.....
+        # ...
+        # Inicio do processo com a análise das subrotinas
+        # Percorre a árvore para as declarações de subrotina
+        # for sub in root.iter("subroutine"):
+        #    print("\n\nInspecionando a subrotina",sub.get("name"))
+        # ....
+            
+        # subroutines
+        # Test rule camel case
+        
+        # TODO - swap from list do dict
+        rule_snake = self.rule_validator_dic['snake_case']
+        str_checks =  rule_snake.check()
+        # Test rule implicit none 
+        
+        
+        
+        
+            
+        return str_errors
+        
+        
 
         
         

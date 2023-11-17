@@ -9,7 +9,7 @@ class CodeReviewer:
     The other main classes of the project are:
     - Parser - Super class for parsing Fortran code, extended to XMLParser or others to be implemented
     - Validator - The super class Validator, extended to XMLValidator or others to be implemented
-    - RulesValidator - The super class for rule validator, extended to RulesValidatorXML, which extends to all XML based rules
+    - RuleValidator - The super class for rule validator, extended to RulesValidatorXML, which extends to all XML based rules
     
     """
     

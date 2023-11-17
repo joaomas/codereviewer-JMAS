@@ -15,7 +15,9 @@ class ValidatorConstructor_XML(ValidatorConstructor):
         
         # TODO instantiate all rules
         ruleValidatorXML_1 = RuleValidator_XML_1()
-        self.rule_validator_arr.append(ruleValidatorXML_1)
-        # self.rule_validator_arr.append(ruleValidatorXML_2)
+        
+        validator_xml.rule_validator_dic['snake_case'] = ruleValidatorXML_1
+        # ...
+        # ...
         
         return validator_xml
