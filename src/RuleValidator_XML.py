@@ -12,7 +12,7 @@ class RuleValidator_XML(RuleValidator):
         super().__init__(description_in)
         
     @abstractmethod
-    def run():
+    def check():
         pass
         
 
@@ -35,3 +35,5 @@ class RuleValidator_XML_1(RuleValidator_XML):
         return ret  
 
 # other rules ...
+# class RuleValidator_XML_2(RuleValidator_XML)
+# class RuleValidator_XML_3(RuleValidator_XML)

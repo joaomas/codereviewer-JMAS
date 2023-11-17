@@ -1,3 +1,4 @@
+import sys
 from Validator import Validator
 from ValidatorConstructor_XML import ValidatorConstructor_XML
 
@@ -19,11 +20,16 @@ class CodeReviewer:
         
         validator_constructor_xml = ValidatorConstructor_XML()
         validator_xml = validator_constructor_xml.construct()
-        
-        validator.run_validator()
-        
-        
-    def 
+        validator_xml.run_validator()
+                
+
+def main() -> int:
+    cr = CodeReviewer()
+    return cr.run_validator()
+    
+
+if __name__ == '__main__':
+    sys.exit(main())  # next section explains the use of sys.exit
         
         
         
