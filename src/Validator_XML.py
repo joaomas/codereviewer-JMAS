@@ -1,5 +1,5 @@
 
-from src.Validator import Validator
+from Validator import Validator
 
 
 class Validator_XML(Validator):

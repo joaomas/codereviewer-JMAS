@@ -1,4 +1,8 @@
 from Parser import Parser
+import subprocess
+import xml.etree.ElementTree as ET
+
+
 
 class Parser_XML(Parser):
 
@@ -10,12 +14,14 @@ class Parser_XML(Parser):
         # TODO
         # Generate all xmlfiles using open-fortran-parser like createXML.bash
         # open_fortran_parser ./code_under_test/teste.F90 ./xml/saida.xml
-        pass
+        rc = subprocess.call ("./parser.bash")
+        #pass
+        return rc
         
         
     def parse(self): # TODO create XML_struct to return:
         
-        
+        #pass
         # xml_structure = Create struct  = root ?
         # TODO
         # get code from QA
@@ -29,5 +35,8 @@ class Parser_XML(Parser):
         #    root = tree.getroot() # Pega a raiz do xml
         # ...
         
-        # return self.xml_struct
+        xml_struct = ET.parse('../xml/saida.xml')
+        root = xml_struct.getroot() # Pega a raiz do xml
+        
+        return self.xml_struct
         
