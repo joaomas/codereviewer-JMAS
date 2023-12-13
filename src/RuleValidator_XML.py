@@ -1,6 +1,6 @@
 
 from abc import *
-from src.RuleValidator import RuleValidator
+from RuleValidator import RuleValidator
 
 
 # TODO - review its purpose - is it necessary ?
