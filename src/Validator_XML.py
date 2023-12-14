@@ -37,7 +37,7 @@ class Validator_XML(Validator):
         rule_snake = self.rule_validator_dic['snake_case']
         str_checks =  rule_snake.check()
         # Test rule implicit none 
-        
+        str_errors='' 
         
         
         
