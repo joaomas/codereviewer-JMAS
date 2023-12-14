@@ -7,6 +7,7 @@ import xml.etree.ElementTree as ET
 class Parser_XML(Parser):
 
     def __init__(self) -> None:
+        self.generate_xml()
         self.xml_struct
 
 
@@ -14,7 +15,7 @@ class Parser_XML(Parser):
         # TODO
         # Generate all xmlfiles using open-fortran-parser like createXML.bash
         # open_fortran_parser ./code_under_test/teste.F90 ./xml/saida.xml
-        rc = subprocess.call ("./parser.bash")
+        rc = subprocess.call ("/home/klclaudio/Documents/Monan/CodeReview/codereviewer/src/parser.bash")
         #pass
         return rc
         
