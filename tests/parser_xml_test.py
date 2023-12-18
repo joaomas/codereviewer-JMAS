@@ -12,15 +12,14 @@ class TestParserXML(unittest.TestCase):
         """Generate xml from open_fortran_parser and compares to generated when creating test
         """
         
-        # code to generate true files - ran once
-        # tree = ET.ElementTree(parser_xml.xml_struct)
-        # tree.write('./tests/test_parse_xml_happy_day.xml', encoding='utf-8', xml_declaration=True)
         
         parser_xml = Parser_XML.Parser_XML()
             
-        file_f90 = './code_under_test/modConvParGF.F90'
+        file_f90 = './tests/test_parse_xml_happy_day.F90'
         parser_xml.parse(file_f90)
         tree_test = ET.ElementTree(parser_xml.xml_struct)
+        # code to generate true files - it was ran once
+        # tree_test.write('./tests/test_parse_xml_happy_day.xml', encoding='utf-8', xml_declaration=True)
         xml_content_test = ET.tostring(tree_test.getroot(), encoding='unicode')
 
         tree_true = ET.parse('./tests/test_parse_xml_happy_day.xml')
