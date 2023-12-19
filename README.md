@@ -24,7 +24,13 @@ python3 -m venv .venv
 source .venv/bin/activate
 ~~~
 
-- Install open-fortran-parser:
+- Install requirements:
 ~~~
-pip install open-fortran-parser
+make init
+~~~
+
+- Test
+
+~~~
+make test
 ~~~
