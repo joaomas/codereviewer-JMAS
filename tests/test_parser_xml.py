@@ -28,5 +28,6 @@ class TestParserXML(unittest.TestCase):
         # Assert that the XML content of the files is equal
         self.assertEqual(xml_content_true, xml_content_test)
 
+
 if __name__ == '__main__':
     unittest.main()
