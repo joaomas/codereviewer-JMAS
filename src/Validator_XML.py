@@ -33,9 +33,10 @@ class Validator_XML(Validator):
         # subroutines
         # Test rule camel case
         
-        # TODO - swap from list do dict
+        # TODO
+        word = 'TODO from xml'
         rule_snake = self.rule_validator_dic['snake_case']
-        str_checks =  rule_snake.check()
+        str_checks =  rule_snake.check(word)
         # Test rule implicit none 
         str_errors='' 
         

@@ -26,6 +26,7 @@ class RuleValidator_XML_1(RuleValidator_XML):
     
     def check(self, word) -> str:
 
+        ret = ''
         ret_bool = True
         # def is_snake_case(word):
         if not word:

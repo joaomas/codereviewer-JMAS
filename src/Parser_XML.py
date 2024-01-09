@@ -10,7 +10,7 @@ class Parser_XML(Parser):
         self.xml_struct = None
 
 
-    def parse(self, file_f90): # TODO create XML_struct to return:
+    def parse(self, file_f90):
         
         self.xml_struct = ofp.parse(file_f90, verbosity=0)
         return self.xml_struct
