@@ -1,5 +1,7 @@
 
 from Validator import Validator
+import xml.etree.ElementTree as ET
+
 
 
 class Validator_XML(Validator):
@@ -29,6 +31,9 @@ class Validator_XML(Validator):
         # for sub in root.iter("subroutine"):
         #    print("\n\nInspecionando a subrotina",sub.get("name"))
         # ....
+    
+        root_test = xml.getroot()
+        #self.assertTrue(are_equal_ignore_path(root_test, root_true))
             
         # subroutines
         # Test rule camel case
