@@ -47,6 +47,19 @@ class RuleValidator_XML_1(RuleValidator_XML):
             ret = 'Error rule' + self.description()
           
         return ret  
+    
+    
+class RuleValidator_XML_2(RuleValidator_XML):
+    
+    def __init__(self) -> None:
+        super().__init__('verify_file_name')
+    
+    def check (self, file_name):
+        if file_name.find(".F90") == -1:
+            print("Rule 4.52 file extention - .F90")
+            points = points
+        return points
+
 
 # other rules ...
 # class RuleValidator_XML_2(RuleValidator_XML)
