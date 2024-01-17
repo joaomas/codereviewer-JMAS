@@ -1,7 +1,7 @@
-from ValidatorConstructor import ValidatorConstructor
-from Parser_XML import Parser_XML
-from Validator_XML import Validator_XML
-from RuleValidator_XML import RuleValidator_XML_1
+from src.ValidatorConstructor import ValidatorConstructor
+from src.Parser_XML import Parser_XML
+from src.Validator_XML import Validator_XML
+from src.RuleValidator_XML import *
 
 class ValidatorConstructor_XML(ValidatorConstructor):
     
@@ -13,10 +13,13 @@ class ValidatorConstructor_XML(ValidatorConstructor):
         parser_xml = Parser_XML()
         validator_xml = Validator_XML(parser_xml)
         
-        # TODO instantiate all rules
+        # TODO instantiate all rules here ?
         ruleValidatorXML_1 = RuleValidator_XML_1()
+        ruleValidatorXML_2 = RuleValidator_XML_2()
         
         validator_xml.rule_validator_dic['snake_case'] = ruleValidatorXML_1
+        validator_xml.rule_validator_dic['verify_file_ext'] = ruleValidatorXML_2
+
         # ...
         # ...
         
