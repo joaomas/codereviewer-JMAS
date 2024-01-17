@@ -1,6 +1,6 @@
 
 from abc import *
-from RuleValidator import RuleValidator
+from src.RuleValidator import RuleValidator
 
 
 # TODO - review its purpose - is it necessary ?
@@ -9,8 +9,8 @@ class RuleValidator_XML(RuleValidator):
     Class for validating XML structure parsed from Fortran code
     """
     
-    def __init__(self, description_in) -> None:
-        super().__init__(description_in)
+    def __init__(self, description_in, code, points, mandatory) -> None:
+        super().__init__(description_in, code, points, mandatory)
         
     @abstractmethod
     def check():
@@ -18,11 +18,12 @@ class RuleValidator_XML(RuleValidator):
         
 
 # all rules
-
+# TODO - review points for each rule
+    
 class RuleValidator_XML_1(RuleValidator_XML):
     
     def __init__(self) -> None:
-        super().__init__('Snake case')
+        super().__init__('snake case', '4.7', 1, True )
     
     def check(self, word) -> str:
 
@@ -47,14 +48,14 @@ class RuleValidator_XML_1(RuleValidator_XML):
             ret = 'Error rule' + self.description()
           
         return ret  
-    
-    
+        
 class RuleValidator_XML_2(RuleValidator_XML):
     
     def __init__(self) -> None:
-        super().__init__('Verify_file_ext')
+        super().__init__('verify_file_ext', '4.52', 10, True )
     
     def check (self, file_name):
+        ret = ''
         if file_name.find(".F90") == -1:
             
             ret = 'Error Rule' + self.description () # print("Rule 4.52 file extention - .F90")
