@@ -1,7 +1,7 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # from src import Parser_XML
 import unittest  
@@ -13,7 +13,7 @@ from src.ValidatorConstructor_XML import ValidatorConstructor_XML
 class TestValidator_XML(unittest.TestCase):
     
     def test_dummyF90(self):
-        """Test validator on empty F90 file
+        """Test validator on empty F90 file by the same path of main Codereviewer
         """
         validator_constructor_xml = ValidatorConstructor_XML()
         validator_xml = validator_constructor_xml.construct()

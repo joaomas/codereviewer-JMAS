@@ -42,10 +42,7 @@ class RuleValidator_XML_1(RuleValidator_XML):
                 ret_bool = False
 
         if not ret_bool:
-        #           if not is_camel_case(sub.get("name")): #4.8 camelCase
-        # ret =  print("Rule 4.8 : camelCase : Linhas",sub.get("line_begin"), sub.get("line_end"))
-        #  points = points + 1.0
-            ret = 'Error rule' + self.description()
+            ret = f'Error rule {self.description}\n'
           
         return ret  
         
@@ -58,8 +55,7 @@ class RuleValidator_XML_2(RuleValidator_XML):
         ret = ''
         if file_name.find(".F90") == -1:
             
-            ret = 'Error Rule' + self.description () # print("Rule 4.52 file extention - .F90")
-            #points = points
+            ret = f'Error Rule {self.description} \n'
         return ret
 
 

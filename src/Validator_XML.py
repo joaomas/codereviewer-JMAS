@@ -37,7 +37,15 @@ class Validator_XML(Validator):
         for file in root.iter("file"): #Pega o nome e caminho do arquivo fonte
             full_file_name = file.get("path")
         
+        rule_verify_file_ext = self.rule_validator_dic['verify_file_ext']
+
+        list_names = full_file_name.split("/")
+        file_name = list_names[-1]
+ 
+        str_errors += rule_verify_file_ext.check(file_name) 
+        # # Test rule implicit none 
         # Abre e lê o arquivo fonte
+
         fn = open(full_file_name, "r")
         lines = fn.readlines()
         lines_work = []
@@ -123,6 +131,10 @@ class Validator_XML(Validator):
         # # Inicio do processo com a análise das subrotinas
         # # Percorre a árvore para as declarações de subrotina
         # points = 0.0
+
+   
+
+        # TODO Create Rule
         # points = verify_module_name(points, full_file_name, root)
 
         # for sub in root.iter("subroutine"):
