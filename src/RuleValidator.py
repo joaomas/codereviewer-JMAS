@@ -1,12 +1,15 @@
 from abc import *
+
 class RuleValidator:
     """_summary_
     The super class for rule validator
     """    
-    def __init__(self, description_in) -> None:
+    
+    def __init__(self, description_in, code, points, mandatory=True) -> None:
         self.description = description_in
-        # TODO - implement points for each rule ?
-        self.points = 0
+        self.code = code
+        self.mandatory = mandatory
+        self.points = points
     
     @abstractmethod
     def check() -> str:

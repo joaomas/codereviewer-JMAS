@@ -1,6 +1,12 @@
 import sys
-from Validator import Validator
-from ValidatorConstructor_XML import ValidatorConstructor_XML
+import os
+
+# TODO remove this. From terminal works exporting PYTHONPATH=/home/usuario/repo/codereviewer , but not from Vscode yet!!!
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from src.Validator import Validator
+from src.ValidatorConstructor_XML import ValidatorConstructor_XML
 
 class CodeReviewer:
     """_summary_
@@ -14,18 +20,24 @@ class CodeReviewer:
     """
     
     def __init__(self) -> None:
-        pass
+        self.validator_constructor_xml = ValidatorConstructor_XML()
+        self.validator_xml = self.validator_constructor_xml.construct()
+
+    def run_validator(self, file_f90):
         
-    def run_validator(self):
+        str_errors = self.validator_xml.run_validator(file_f90)
+        if len(str_errors) > 0:
+            print(f'Errors found:\n{str_errors}' )
         
-        validator_constructor_xml = ValidatorConstructor_XML()
-        validator_xml = validator_constructor_xml.construct()
-        validator_xml.run_validator()
+
+
                 
 
 def main() -> int:
+    # TODO file_f90 via line command parameter
+    file_f90 = './tests/dummy.F90' 
     cr = CodeReviewer()
-    return cr.run_validator()
+    return cr.run_validator(file_f90)
     
 
 if __name__ == '__main__':
