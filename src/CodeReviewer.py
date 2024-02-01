@@ -27,23 +27,34 @@ class CodeReviewer:
         
         str_errors = self.validator_xml.run_validator(file_f90)
         if len(str_errors) > 0:
-            print(f'Errors found:\n{str_errors}' )
-        
-
-
-                
+            print(f'Errors found: \n{str_errors}')
+        return str_errors
+               
 
 def main() -> int:
-    # TODO file_f90 via line command parameter
-    file_f90 = './tests/dummy.F90' 
+
+    file_f90 = get_file_name_from_command_line()   
     cr = CodeReviewer()
+    print(file_f90)
     return cr.run_validator(file_f90)
-    
+
+
+def get_file_name_from_command_line() -> str:
+    """_summary_
+    Get the file name from the command line
+    """
+    if len(sys.argv) > 1:
+        return sys.argv[1]
+    else:
+        print('No file name provided')
+        return ''
+
 
 if __name__ == '__main__':
     sys.exit(main())  # next section explains the use of sys.exit
         
-        
+
+    
         
 
 
