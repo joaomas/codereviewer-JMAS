@@ -12,7 +12,7 @@ from src.ValidatorConstructor_XML import ValidatorConstructor_XML
 
 class TestValidator_XML(unittest.TestCase):
     
-    def test_dummyF90(self):
+    def test_dummyF90_happyday(self):
         """Test validator on empty F90 file by the same path of main Codereviewer
         """
         validator_constructor_xml = ValidatorConstructor_XML()
@@ -20,6 +20,16 @@ class TestValidator_XML(unittest.TestCase):
         str1 = validator_xml.run_validator('tests/dummy.F90')
         self.assertEqual('', str1)
         
+
+    def test_validator_XML_rule_verify_file_ext_fail(self):
+        """Teste the validator using a dummy.f90 file, and check thar the assertion 
+        is equals the error of method check of the class RuleValidator_XML_2
+        """
+        validator_constructor_xml = ValidatorConstructor_XML()
+        validator_xml = validator_constructor_xml.construct()
+        str1 = validator_xml.run_validator('tests/test_validator_xml_rule_verify_file_ext_fail.f90')
+        self.assertEqual(str1, 'Error Rule verify_file_ext \n')
+
 
 if __name__ == '__main__':
     unittest.main()
