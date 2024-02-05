@@ -22,13 +22,22 @@ class TestValidator_XML(unittest.TestCase):
         
 
     def test_validator_XML_rule_verify_file_ext_fail(self):
-        """Teste the validator using a dummy.f90 file, and check thar the assertion 
+        """Teste the validator using a dummy.f90 file, and check that the assertion 
         is equals the error of method check of the class RuleValidator_XML_2
         """
         validator_constructor_xml = ValidatorConstructor_XML()
         validator_xml = validator_constructor_xml.construct()
         str1 = validator_xml.run_validator('tests/test_validator_xml_rule_verify_file_ext_fail.f90')
         self.assertEqual(str1, 'Error Rule verify_file_ext \n')
+
+    def test_validator_XML_rule_verify_module_name_fail(self):
+        """Teste the validator using a mod file, and check that the assertion 
+        is equals the error of method check of the class RuleValidator_XML_3
+        """
+        validator_constructor_xml = ValidatorConstructor_XML()
+        validator_xml = validator_constructor_xml.construct()
+        str1 = validator_xml.run_validator('tests/test_module_name.f90')
+        self.assertEqual(str1, 'Error Rule module_name \n')
 
 
 if __name__ == '__main__':
