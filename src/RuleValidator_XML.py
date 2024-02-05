@@ -57,6 +57,18 @@ class RuleValidator_XML_2(RuleValidator_XML):
             
             ret = f'Error Rule {self.description} \n'
         return ret
+    
+class RuleValidator_XML_3(RuleValidator_XML):
+    
+    def __init__(self) -> None:
+        super().__init__('verify_module_name', '4.31', 10, True )
+    
+    def check (self, file_name):
+        ret = ''
+        if file_name.find("mod") == -1:
+            
+            ret = f'Error Rule {self.description} \n'
+        return ret
 
 
 

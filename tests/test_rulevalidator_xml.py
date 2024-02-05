@@ -6,6 +6,8 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 import unittest
 # import xml.etree.ElementTree as ET
 from src.RuleValidator_XML import RuleValidator_XML_2
+from src.RuleValidator_XML import RuleValidator_XML_3
+
 
 
 class TestRuleValidator_XML(unittest.TestCase):
@@ -22,17 +24,17 @@ class TestRuleValidator_XML(unittest.TestCase):
         self.assertEqual(True, rule2.mandatory)
         self.assertEqual(10, rule2.points, 'wrong points')
 
-    def nextrule(self):
+    def test_verify_module_name(self):
         """Test rule 3
         """
 
         rule3 = RuleValidator_XML_3()
-        ret = rule3.check('')
+        ret = rule3.check('modteste.F90')
         self.assertEqual('', ret)
-        self.assertEqual('nextrule', rule3.description)
-        self.assertEqual('XXX', rule3.code)
+        self.assertEqual('verify_module_name', rule3.description)
+        self.assertEqual('4.31', rule3.code)
         self.assertEqual(True, rule3.mandatory)
-        self.assertEqual(1, rule3.points, 'wrong points')
+        self.assertEqual(10, rule3.points, 'wrong points')
 
 
 if __name__ == '__main__':
