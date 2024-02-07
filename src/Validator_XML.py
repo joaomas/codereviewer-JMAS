@@ -136,6 +136,7 @@ class Validator_XML(Validator):
 
         # TODO Create Rule
         # points = verify_module_name(points, full_file_name, root)
+        rule_verify_module_name = self.rule_validator_dic['verify_module_name']
 
         # for sub in root.iter("subroutine"):
         #     print("\n\nInspecionando a subrotina", sub.get("name"))

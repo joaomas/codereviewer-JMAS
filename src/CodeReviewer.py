@@ -49,12 +49,5 @@ def get_file_name_from_command_line() -> str:
         print('No file name provided')
         return ''
 
-
 if __name__ == '__main__':
     sys.exit(main())  # next section explains the use of sys.exit
-        
-
-    
-        
-
-
