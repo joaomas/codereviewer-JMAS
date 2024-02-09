@@ -8,21 +8,21 @@ class Validator_XML(Validator):
     """_summary_
     XML structure Validator for RuleValidator_XML rules
     """
-    
-    
+
+
     def __init__(self, parser_xml_in) -> None:
         super().__init__()
         self.parser_xml = parser_xml_in  #scturcture xml
-        
-    
+
+
     # TODO - pass a file or directory ?
     def run_validator(self, file_f90):
-       
+
         xml = self.parser_xml.parse(file_f90)
-        str_errors=''        
-         
+        str_errors=''
+
         # code from QA
-        
+
         # OK -------
         # test rule verify_file_ext
         ## read the files and get fields
@@ -36,24 +36,25 @@ class Validator_XML(Validator):
 
         for file in root.iter("file"): #Pega o nome e caminho do arquivo fonte
             full_file_name = file.get("path")
-        
+
         rule_verify_file_ext = self.rule_validator_dic['verify_file_ext']
 
         list_names = full_file_name.split("/")
-        file_name = list_names[-1]
- 
-        str_errors += rule_verify_file_ext.check(file_name) 
-        # # Test rule implicit none 
+        file_name  = list_names[-1]
+        print("file_name: ", file_name)
+
+        str_errors += rule_verify_file_ext.check(file_name)
+        # # Test rule implicit none
         # Abre e lê o arquivo fonte
 
         fn = open(full_file_name, "r")
-        lines = fn.readlines()
-        lines_work = []
+        lines        = fn.readlines()
+        lines_work   = []
         c_lines_work = []
 
         comments = {}
 
-      
+
         # comments = search_comments(root)
         # #print(comments)
         # # Percorre as linhas de entrada e reescreve retirando os comentários
@@ -104,83 +105,80 @@ class Validator_XML(Validator):
 
         # # Tabela de palavras reservadas
         # keywords = [ "abstract", "allocatable", "allocate", "assign", "associate",
-        #                 "asynchronous", "backspace, bind", "block", "block data", 
+        #                 "asynchronous", "backspace, bind", "block", "block data",
         #                 "call", "case", "class", "close", "codimension", "common",
         #                 "concurrent","contains", "contiguous", "continue", "critical",
-        #                 "cycle", "data", "deallocate", "deferred", "dimension", "do", 
-        #                 "elemental", "else", "elseif", "elsewhere", "end","endif",  
-        #                 "end do", "endfile", "end if", "end module", 
+        #                 "cycle", "data", "deallocate", "deferred", "dimension", "do",
+        #                 "elemental", "else", "elseif", "elsewhere", "end","endif",
+        #                 "end do", "endfile", "end if", "end module",
         #                 "end select", "end subroutine", "entry", "enum", "enumerator",
         #                 "equivalence", "error", "exit", "extends", "external", "final",
-        #                 "flush", "forall", "format", "function", "generic", "goto", 
-        #                 "if", "implicit", "import", "include", "inquire", "intent", 
+        #                 "flush", "forall", "format", "function", "generic", "goto",
+        #                 "if", "implicit", "import", "include", "inquire", "intent",
         #                 "interface", "intrinsic", "lock", "memory", "module", "namelist",
-        #                 "non_overridable", "nopass", "nullify", "only", "open", 
+        #                 "non_overridable", "nopass", "nullify", "only", "open",
         #                 "operator", "optional", "parameter", "pass", "pause", "pointer",
-        #                 "print", "private", "procedure", "program", "protected", 
+        #                 "print", "private", "procedure", "program", "protected",
         #                 "public", "pure", "read", "recursive", "result", "return", "rewind",
         #                 "rewrite", "save", "select", "sequence", "stop", "submodule",
-        #                 "subroutine", "sync", "sync all", "sync images", "target", "then", 
-        #                 "unlock", "use", "value", "volatile", "wait", "where", "while", 
+        #                 "subroutine", "sync", "sync all", "sync images", "target", "then",
+        #                 "unlock", "use", "value", "volatile", "wait", "where", "while",
         #                 "write" ]
-        
+
         # # Tabelas de palavras reservadas não-aceitas
         # not_keywords = [ "enddo", "endif", "goto", "pause", "equivalence","common",
         #                 "save", "data", "double precision","stop" ]
-        
+
         # # Inicio do processo com a análise das subrotinas
         # # Percorre a árvore para as declarações de subrotina
         # points = 0.0
 
-   
+
 
         # TODO Create Rule
         # points = verify_module_name(points, full_file_name, root)
         rule_verify_module_name = self.rule_validator_dic['verify_module_name']
+        str_errors += rule_verify_module_name.check(file_name)
+
+
 
         # for sub in root.iter("subroutine"):
         #     print("\n\nInspecionando a subrotina", sub.get("name"))
         #     print("---------------------------------------------------------")
         #     print("subroutine lines = ", int(sub.get("line_end")) - int(sub.get("line_begin")))
-        #     print("---------------------------------------------------------")      
-            
+        #     print("---------------------------------------------------------")
+
         #     points = 0.0
         #     p_proc_name = FALSE
         #     p_src_name = FALSE
         #     name_list= search_namelist(sub)
         #     used_keywords = search_keywords(sub, keywords)
-            
+
         #     # #eval() #execução a partir de strings
 
         #     # for key, value1 in dict.getitem()
-        #     #    eval 
+        #     #    eval
 
         #     points = case_keywords(sub, keywords, points)
 
 
-        
-        
-            
+
+
+
         # subroutines
         # Test rule camel case
-        
+
         # TODO
         # word = 'TODO from xml'
         # rule_snake = self.rule_validator_dic['snake_case']
 
 
         # str_checks =  rule_snake.check(word)
-        # # Test rule implicit none 
+        # # Test rule implicit none
         #
-        #   
-        
-        
-        
-            
-        return str_errors
-        
-        
+        #
 
-        
-        
-        
+
+
+
+        return str_errors
