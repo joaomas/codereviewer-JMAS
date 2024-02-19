@@ -5,12 +5,25 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 # from src import Parser_XML
 import unittest
 # import xml.etree.ElementTree as ET
+from src.RuleValidator_XML import RuleValidator_XML_1
 from src.RuleValidator_XML import RuleValidator_XML_2
 from src.RuleValidator_XML import RuleValidator_XML_3
 
 
-
 class TestRuleValidator_XML(unittest.TestCase):
+
+    def test_snake_case(self):
+        """Test rule 1
+        """
+
+        rule1 = RuleValidator_XML_1()
+        ret = rule1.check('check_case')
+        self.assertEqual('', ret)
+        self.assertEqual('snake_case', rule1.description)
+        self.assertEqual('4.7', rule1.code)
+        self.assertEqual(True, rule1.mandatory)
+        self.assertEqual(1, rule1.points, 'wrong points')
+
 
     def test_verify_file_ext(self):
         """Test rule 2

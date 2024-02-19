@@ -40,6 +40,16 @@ class TestValidator_XML(unittest.TestCase):
         str1          = validator_xml.run_validator('tests/test_module_name_fail.f90')
         self.assertEqual(str1, 'Error Rule verify_module_name \n')
 
+    def test_validator_XML_snake_case_fail(self):
+        """Test the validator using a mod file, and check that the assertion
+        is equals the error of method check of the class RuleValidator_XML_3
+        """
+        #TODO
+        # validator_constructor_xml = ValidatorConstructor_XML()
+        # validator_xml = validator_constructor_xml.construct()
+        # str1          = validator_xml.run_validator('tests/test_module_name_fail.f90')
+        # self.assertEqual(str1, 'Error Rule verify_module_name \n')
+
 
 if __name__ == '__main__':
     unittest.main()

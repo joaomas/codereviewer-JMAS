@@ -23,7 +23,7 @@ class RuleValidator_XML(RuleValidator):
 class RuleValidator_XML_1(RuleValidator_XML):
 
     def __init__(self) -> None:
-        super().__init__('snake case', '4.7', 1, True )
+        super().__init__('snake_case', '4.7', 1, True )
 
     def check(self, word) -> str:
 
