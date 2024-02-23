@@ -23,7 +23,7 @@ class CodeReviewer:
         self.validator_constructor_xml = ValidatorConstructor_XML()
         self.validator_xml             = self.validator_constructor_xml.construct()
 
-    def run_validator(self, file_f90):
+    def execute_validation(self, file_f90):
 
         str_errors = self.validator_xml.run_validator(file_f90)
         if len(str_errors) > 0:
@@ -41,7 +41,7 @@ def main() -> int:
     # /bin/python3 src/CodeReviewer.py tests/dummy.f90
     file_f90 = get_file_name_from_command_line()
 
-    return cr.run_validator(file_f90)
+    return cr.execute_validation(file_f90)
 
 
 def get_file_name_from_command_line() -> str:
