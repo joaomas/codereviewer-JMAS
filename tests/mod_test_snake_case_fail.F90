@@ -1,4 +1,4 @@
-MODULE test_odule_name_fail
+MODULE mod_test_odule_name_fail
 
   PRIVATE
 

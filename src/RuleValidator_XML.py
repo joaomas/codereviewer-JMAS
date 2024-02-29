@@ -55,7 +55,7 @@ class RuleValidator_XML_2(RuleValidator_XML):
         ret = ''
         if file_name.find(".F90") == -1:
 
-            ret = f'Error Rule {self.description} \n'
+            ret = f'Error Rule {self.description}\n'
         return ret
 
 class RuleValidator_XML_3(RuleValidator_XML):
@@ -68,7 +68,7 @@ class RuleValidator_XML_3(RuleValidator_XML):
         position = file_name.find("mod")
         if position == -1 or position > 0:
 
-            ret = f'Error Rule {self.description} \n'
+            ret = f'Error Rule {self.description}\n'
         return ret
 
 

@@ -13,7 +13,7 @@ class TestCodeReviewer(unittest.TestCase):
         """Test Codereviewer class by passing the file dummy.F90
         """
         cr = CodeReviewer()
-        str1 = cr.execute_validation('tests/dummy.F90')
+        str1 = cr.execute_validation('tests/mod_dummy.F90')
         self.assertEqual('', str1)
 
 

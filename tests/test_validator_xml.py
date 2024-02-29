@@ -12,11 +12,11 @@ from src.ValidatorConstructor_XML import ValidatorConstructor_XML
 class TestValidator_XML(unittest.TestCase):
 
     def test_dummyF90_happyday(self):
-        """Test validator on empty F90 file by the same path of main Codereviewer
+        """Test validator on F90 file - must pass ALL RULES
         """
         validator_constructor_xml = ValidatorConstructor_XML()
         validator_xml = validator_constructor_xml.construct()
-        str1          = validator_xml.run_validator('tests/dummy.f90')
+        str1          = validator_xml.run_validator('tests/mod_dummy.F90')
         self.assertEqual('', str1)
 
     def test_validator_XML_snake_case_fail(self):
@@ -26,8 +26,8 @@ class TestValidator_XML(unittest.TestCase):
         #TODO
         validator_constructor_xml = ValidatorConstructor_XML()
         validator_xml = validator_constructor_xml.construct()
-        str1          = validator_xml.run_validator('tests/test_snake_case_fail.f90')
-        self.assertEqual(str1, 'Error Rule verify_snake_case \n')
+        str1          = validator_xml.run_validator('tests/mod_test_snake_case_fail.F90')
+        self.assertEqual(str1, 'Error rule snake_case\n')
 
     def test_validator_XML_rule_verify_file_ext_fail(self):
         """Test the validator using a dummy.f90 file, and check that the assertion
@@ -35,8 +35,8 @@ class TestValidator_XML(unittest.TestCase):
         """
         validator_constructor_xml = ValidatorConstructor_XML()
         validator_xml = validator_constructor_xml.construct()
-        str1          = validator_xml.run_validator('tests/test_validator_xml_rule_verify_file_ext_fail.F90')
-        self.assertEqual(str1, 'Error Rule verify_file_ext \n')
+        str1          = validator_xml.run_validator('tests/mod_test_validator_xml_rule_verify_file_ext_fail.f90')
+        self.assertEqual(str1, 'Error Rule verify_file_ext\n')
 
 
     def test_validator_XML_rule_verify_module_name_fail(self):
@@ -45,8 +45,8 @@ class TestValidator_XML(unittest.TestCase):
         """
         validator_constructor_xml = ValidatorConstructor_XML()
         validator_xml = validator_constructor_xml.construct()
-        str1          = validator_xml.run_validator('tests/test_module_name_fail.f90')
-        self.assertEqual(str1, 'Error Rule verify_module_name \n')
+        str1          = validator_xml.run_validator('tests/test_module_name_fail.F90')
+        self.assertEqual(str1, 'Error Rule verify_module_name\n')
 
 
 if __name__ == '__main__':

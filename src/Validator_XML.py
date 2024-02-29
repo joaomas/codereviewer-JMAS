@@ -44,6 +44,7 @@ class Validator_XML(Validator):
         print("file_name: ", file_name)
 
         str_errors += rule_verify_file_ext.check(file_name)
+        
         # # Test rule implicit none
         # Abre e lê o arquivo fonte
 
