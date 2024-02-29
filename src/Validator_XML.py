@@ -230,10 +230,10 @@ class Validator_XML(Validator):
       #  has_implicit = False
       #  has_use = False
       #  has_only = False
-        for elem in sub.iter("body"):
+           for elem in sub.iter("body"):
          ##### Falta olhar os comentários
-            for spc in elem.iter("specification"):
-               for dec in spc.iter("declaration"):
+                for spc in elem.iter("specification"):
+                   for dec in spc.iter("declaration"):
 
                   # Verificação da declaração de implicit
                   # for ist in dec.iter("implicit-stmt"):
@@ -248,9 +248,9 @@ class Validator_XML(Validator):
                    # # Verifica quais linhas com delacaração de parameter
                    # # Guarda na lista lines_with_parameter
 
-                   lines_with_parameter = []
-                   for atp in dec.iter("attribute-parameter"):
-                       lines_with_parameter.append(atp.get("line_begin"))
+                       lines_with_parameter = []
+                       for atp in dec.iter("attribute-parameter"):
+                           lines_with_parameter.append(atp.get("line_begin"))
                #    #atp.get("line_begin")) + 1  # linha seguinte ao parametro
                #    if (int(atp.get("line_begin")) -1)  not in comments.get("line"):
                #       print("Rule 4.11.2/12.2 : commnents line:",\
@@ -274,18 +274,18 @@ class Validator_XML(Validator):
 
                # p_proc_name = FALSE
                # p_srcc_name = FALSE
-                   for vars in dec.iter("variables"):
-                      for var in vars.iter("variable"):
-                         if type(var.get("name")) != str: #Previne da leitura de não strings
-                           continue
+                       for vars in dec.iter("variables"):
+                          for var in vars.iter("variable"):
+                             if type(var.get("name")) != str: #Previne da leitura de não strings
+                                continue
                      # Dados da variável: nome, linha
-                         var_name = var.get("name")
-                         line_begin = var.get("line_begin")
-                         line_end = var.get("line_end")
+                             var_name = var.get("name")
+                             line_begin = var.get("line_begin")
+                             line_end = var.get("line_end")
 
                          #print("variable: ", var_name)
-                         rule_verify_snake_case = self.rule_validator_dic["snake_case"]
-                         str_errors += rule_verify_snake_case.check(var_name)
+                             rule_verify_snake_case = self.rule_validator_dic["verify_snake_case"]
+                             str_errors += rule_verify_snake_case.check(var_name)
 
 
                         # word =
