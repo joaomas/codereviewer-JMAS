@@ -9,7 +9,6 @@ import unittest
 from src.Validator_XML import Validator_XML
 from src.ValidatorConstructor_XML import ValidatorConstructor_XML
 
-
 class TestValidator_XML(unittest.TestCase):
 
     def test_dummyF90_happyday(self):
@@ -17,7 +16,7 @@ class TestValidator_XML(unittest.TestCase):
         """
         validator_constructor_xml = ValidatorConstructor_XML()
         validator_xml = validator_constructor_xml.construct()
-        str1          = validator_xml.run_validator('tests/dummy.F90')
+        str1          = validator_xml.run_validator('tests/dummy.f90')
         self.assertEqual('', str1)
 
     def test_validator_XML_snake_case_fail(self):
@@ -25,10 +24,10 @@ class TestValidator_XML(unittest.TestCase):
         is equals the error of method check of the class RuleValidator_XML_1
         """
         #TODO
-        # validator_constructor_xml = ValidatorConstructor_XML()
-        # validator_xml = validator_constructor_xml.construct()
-        # str1          = validator_xml.run_validator('tests/test_module_name_fail.f90')
-        # self.assertEqual(str1, 'Error Rule verify_snake_case \n')
+        validator_constructor_xml = ValidatorConstructor_XML()
+        validator_xml = validator_constructor_xml.construct()
+        str1          = validator_xml.run_validator('tests/test_snake_case_fail.f90')
+        self.assertEqual(str1, 'Error Rule verify_snake_case \n')
 
     def test_validator_XML_rule_verify_file_ext_fail(self):
         """Test the validator using a dummy.f90 file, and check that the assertion
@@ -48,8 +47,6 @@ class TestValidator_XML(unittest.TestCase):
         validator_xml = validator_constructor_xml.construct()
         str1          = validator_xml.run_validator('tests/test_module_name_fail.f90')
         self.assertEqual(str1, 'Error Rule verify_module_name \n')
-
-
 
 
 if __name__ == '__main__':

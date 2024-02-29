@@ -160,25 +160,141 @@ class Validator_XML(Validator):
         #     #    eval
 
         #     points = case_keywords(sub, keywords, points)
+        for sub in root.iter("subroutine"):
+           print("\n\nInspecionando a subrotina", sub.get("name"))
+#       print("---------------------------------------------------------")
+#       print("subroutine lines = ", int(sub.get("line_end")) - int(sub.get("line_begin")))
+#       print("---------------------------------------------------------")
+
+#       points = 0.0
+#       p_proc_name = FALSE
+#       p_src_name = FALSE
+#       name_list= search_namelist(sub)
+#       used_keywords = search_keywords(sub, keywords)
+
+#       # #eval() #execução a partir de strings
+
+#       # for key, value1 in dict.getitem()
+#       #    eval
+
+#       points = case_keywords(sub, keywords, points)
+#       points = verify_name_list(points, name_list)
+#       points = case_keyword_variables(sub, points, keywords,\
+#                                       not_keywords, name_list["id"])
+#       points = keywords_in_line(sub, keywords, points)
+#       points = verify_col_end(sub, points)
+#       points = verify_colapsed_keywords(points,used_keywords)
+
+#       points = verify_deallocate(sub, points)
+
+#       print("Dealloacate ---->")
+# #      points = verify_deallocate(sub,points)
+#       points = verify_allocate(sub,points)
+#       print("Fim Dealloacate ---->")
+
+#       # Verifica a primeira Rule de nome
+#       if not is_camel_case(sub.get("name")): #4.8 camelCase
+#          print("Rule 4.8 : camelCase : lines", \
+#                 sub.get("line_begin"), sub.get("line_end"))
+#          points = points + 1.0
+
+#       arguments = []
+#       intent_list = []
+#       # Inspeciona o header da subrotina
+      #  for elem in sub.iter("header"):
+      #    # Inspeciona os argumentos de chamada
+      #    for args in elem.iter("arguments"):
+      #       # Inspeciona o nome dos argumentos dentro das Rules
+      #       for arg in args.iter("argument"):
+      #          if type(arg.get("name")) != str: #Previne da leitura de não strings
+      #             continue
+
+      #          # Preenche a lista de argumentos de chamada da subrotina
+      #          arguments.append(arg.get("name"))
+
+      #          # Verifica a Rule de nome de variável e a Rule de nomes curtos
+      #          if not is_snake_case(arg.get("name")): #4.7 snake_case
+      #             print("Rule 4.7 : snake_case : line", \
+      #                    arg.get("line_begin"), arg.get("name"))
+      #             points = points + 1.0
+      #          if arg.get("name") in keywords:
+      #             print("Rule 4.71 : keyword : line",\
+      #                    arg.get("line_begin"), arg.get("name"))
+      #             points = points + 1.0
+      #          if arg.get("name") in not_keywords:
+      #             print("Rule 4.71 : not_keyword : line",\
+      #                    arg.get("line_begin"), arg.get("name"))
+      #             points = points + 1.0
+
+      # # Inspeciona o corpo da subrotina
+      #  has_implicit = False
+      #  has_use = False
+      #  has_only = False
+        for elem in sub.iter("body"):
+         ##### Falta olhar os comentários
+            for spc in elem.iter("specification"):
+               for dec in spc.iter("declaration"):
+
+                  # Verificação da declaração de implicit
+                  # for ist in dec.iter("implicit-stmt"):
+                  #    has_implicit = True #Informa que a declaração de implicit foi encontrada
+                  #    # Verifica a Rule de implicit none obrigatório
+                  #    if not ist.get("implicitKeyword") == "implicit" \
+                  #       and not ist.get("noneKeyword") == "none": #4.28- sem implicit
+                  #       print("Rule 4.28 : no implicit : lines", \
+                  #              spc.get("line_begin"), spc.get("line_end"))
+                  #       points = points + 0.5
+
+                   # # Verifica quais linhas com delacaração de parameter
+                   # # Guarda na lista lines_with_parameter
+
+                   lines_with_parameter = []
+                   for atp in dec.iter("attribute-parameter"):
+                       lines_with_parameter.append(atp.get("line_begin"))
+               #    #atp.get("line_begin")) + 1  # linha seguinte ao parametro
+               #    if (int(atp.get("line_begin")) -1)  not in comments.get("line"):
+               #       print("Rule 4.11.2/12.2 : commnents line:",\
+               #              int(atp.get("line_begin")) - 1)
+               #       points = points + 1.0
+               #    #---->verificar regras
+               #    elif "!!" not in comments.get("txt_comment")[comments.get("line").index(int(atp.get("line_begin")) + 1) ]:
+               #       print("Rule 4.11.2/12.2 : commnents line (!!) :",\
+               #              int(atp.get("line_begin") + 1) )
+               #       points = points + 1.0
+               #    elif len(comments.get("txt_comment")[comments.get("line").index(int(atp.get("line_begin")) + 1) ].strip())  <= 2:
+               #       print("Rule 4.11.2/12.2 : small commnents :",\
+               #              int(atp.get("line_begin")) + 1)
+               #       points = points + 1.0
+
+               # for itt in dec.iter("intent"):
+               #    intent = itt.get("type")
+               #    itt_line_begin = itt.get("line_begin")
+               #    itt_line_end = itt.get("line_end")
+               #    intent_list.append(itt_line_begin)
+
+               # p_proc_name = FALSE
+               # p_srcc_name = FALSE
+                   for vars in dec.iter("variables"):
+                      for var in vars.iter("variable"):
+                         if type(var.get("name")) != str: #Previne da leitura de não strings
+                           continue
+                     # Dados da variável: nome, linha
+                         var_name = var.get("name")
+                         line_begin = var.get("line_begin")
+                         line_end = var.get("line_end")
+
+                         #print("variable: ", var_name)
+                         rule_verify_snake_case = self.rule_validator_dic["snake_case"]
+                         str_errors += rule_verify_snake_case.check(var_name)
 
 
+                        # word =
+                        # rule_snake = self.rule_validator_dic['snake_case']
+                        # str_checks =  rule_snake.check(word)
 
 
-
-        # subroutines
-        # Test rule camel case
-
-        # TODO
-        # word = 'TODO from xml'
-        # rule_snake = self.rule_validator_dic['snake_case']
-
-
-        # str_checks =  rule_snake.check(word)
         # # Test rule implicit none
         #
         #
-
-
-
 
         return str_errors
