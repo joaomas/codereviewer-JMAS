@@ -26,9 +26,9 @@ class CodeReviewer:
     def execute_validation(self, file_f90):
 
         str_errors = self.validator_xml.run_validator(file_f90)
-        if len(str_errors) > 0:
-            print(f'Errors found: \n{str_errors}')
-            #print("--")
+        # if len(str_errors) > 0:
+        #     print(f'Errors found: \n{str_errors}')
+        #     #print("--")
         return str_errors
 
 
