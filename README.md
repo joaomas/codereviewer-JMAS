@@ -1,16 +1,22 @@
 # codereviewer
-
 Tool for automated Fortran Code Review based on GCC rules
+Version 0.1.0 
 
 Language used: Python
 
-Programming paradigm -Object-oriented programming (OOP) 
+Programming paradigm -Object-oriented programming (OOP)
 
 
 > codereviewer
      README.md
      LICENSE
      src/
+     tests/
+     Makefile
+     requirements.txt
+
+### History
+Version 0.1.0 - initial version
 
 
 ### Installation instructions
