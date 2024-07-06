@@ -19,4 +19,4 @@ jobs:
           python-version: '3.10'
       
       - name: Run Python script
-        run: sudo apt install default-jre; make init; make test; python src/CodeReviewer.py https://github.com/joaomas/MONAN-Model-JMAS/blob/main/src/core_atmosphere/physics/physics_monan/modVector.F
+        run: sudo apt install default-jre; make init; make test; python src/CodeReviewer.py tests/modVector.F
