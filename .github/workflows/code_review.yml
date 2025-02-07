@@ -25,29 +25,30 @@ jobs:
       - name: Executar revisão com ChatGPT
         id: ai_review
         run: |
-          import openai
-          import os
-
-          api_key = os.getenv("OPENAI_API_KEY")
-          with open("pr_diff.txt", "r") as file:
-              pr_diff = file.read()
-
-          prompt = f"Revise o seguinte código e sugira melhorias:\n\n{pr_diff}"
-
-          response = openai.ChatCompletion.create(
-              model="gpt-4",
-              messages=[{"role": "system", "content": "Você é um revisor de código experiente."},
-                        {"role": "user", "content": prompt}]
-          )
-
-          review = response["choices"][0]["message"]["content"]
-          print("### AI Code Review ###\n", review)
-
-          with open("ai_review.txt", "w") as file:
-              file.write(review)
-
+            python3 - <<EOF
+            import openai
+            import os
+      
+            api_key = os.getenv("OPENAI_API_KEY")
+            with open("pr_diff.txt", "r") as file:
+                pr_diff = file.read()
+      
+            prompt = f"Revise o seguinte código e sugira melhorias:\n\n{pr_diff}"
+      
+            response = openai.ChatCompletion.create(
+                model="gpt-4",
+                messages=[{"role": "system", "content": "Você é um revisor de código experiente."},
+                          {"role": "user", "content": prompt}]
+            )
+      
+            review = response["choices"][0]["message"]["content"]
+            print("### AI Code Review ###\n", review)
+      
+            with open("ai_review.txt", "w") as file:
+                file.write(review)
+            EOF
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+            OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
       - name: Comentar no PR
         run: |
