@@ -1,5 +1,7 @@
 # teste PR com chatgpt
 
+alterando o readme.. chatgpt esta correto?
+
 # codereviewer
 Tool for automated Fortran Code Review based on GCC rules
 Version 0.1.0 
