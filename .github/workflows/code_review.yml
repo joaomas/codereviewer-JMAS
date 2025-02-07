@@ -7,50 +7,51 @@ on:
 jobs:
   code-review:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout código
+      - name: 📥 Checkout código
         uses: actions/checkout@v4
 
-      - name: Instalar dependências
-        run: pip install openai requests
+      - name: 🔧 Instalar dependências
+        run: pip install openai requests gh
 
-      - name: Extrair mudanças do PR
+      - name: 📜 Extrair mudanças do PR
         id: extract_diff
         run: |
-          PR_DIFF=$(gh pr diff ${{ github.event.pull_request.number }} --repo ${{ github.repository }})
-          echo "$PR_DIFF" > pr_diff.txt
+          gh pr diff ${{ github.event.pull_request.number }} --repo ${{ github.repository }} > pr_diff.txt
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Executar revisão com ChatGPT
-      id: ai_review
-      run: |
+      - name: 🤖 Executar revisão com ChatGPT
+        id: ai_review
+        run: |
           python3 - <<EOF
           import openai
           import os
-    
+
           api_key = os.getenv("OPENAI_API_KEY")
           with open("pr_diff.txt", "r") as file:
               pr_diff = file.read()
-    
-          prompt = f"Revise o seguinte código e sugira melhorias:\n\n{pr_diff}"
-    
-          response = openai.ChatCompletion.create(
-              model="gpt-4",
-              messages=[{"role": "system", "content": "Você é um revisor de código experiente."},
-                        {"role": "user", "content": prompt}]
-          )
-    
-          review = response["choices"][0]["message"]["content"]
+
+          if not pr_diff.strip():
+              review = "Nenhuma alteração detectada no PR."
+          else:
+              prompt = f"Revise o seguinte código e sugira melhorias:\n\n{pr_diff}"
+              response = openai.ChatCompletion.create(
+                  model="gpt-4",
+                  messages=[{"role": "system", "content": "Você é um revisor de código experiente."},
+                            {"role": "user", "content": prompt}]
+              )
+              review = response["choices"][0]["message"]["content"]
+
           print("### AI Code Review ###\n", review)
-    
           with open("ai_review.txt", "w") as file:
               file.write(review)
           EOF
-      env:
+        env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
-      - name: Comentar no PR
+      - name: 💬 Comentar no PR
         run: |
           gh pr comment ${{ github.event.pull_request.number }} --body "$(cat ai_review.txt)"
         env:
