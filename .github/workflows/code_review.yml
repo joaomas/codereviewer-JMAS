@@ -17,10 +17,9 @@ jobs:
 
       - name: 📜 Extrair mudanças do PR
         id: extract_diff
-        run: |
-        curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-             -H "Accept: application/vnd.github.v3.diff" \
-             "${{ github.event.pull_request.diff_url }}" > pr_diff.txt
+          run: |
+          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github.v3.diff" \
+          "${{ github.event.pull_request.url }}" > pr_diff.txt
 
       - name: 🤖 Executar revisão com ChatGPT
         id: ai_review
