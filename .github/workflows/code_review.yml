@@ -21,36 +21,36 @@ jobs:
           curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github.v3.diff" \
           "${{ github.event.pull_request.url }}" > pr_diff.txt
 
-     - name: 🤖 Executar revisão com ChatGPT
-       id: ai_review
-       run: |
-          python3 - <<EOF
-          import openai
-          import os
-      
-          api_key = os.getenv("OPENAI_API_KEY")
-          client = openai.OpenAI(api_key=api_key)  # Novo cliente compatível com OpenAI v1
-      
-          with open("pr_diff.txt", "r") as file:
-              pr_diff = file.read()
-      
-          if not pr_diff.strip():
-              review = "Nenhuma alteração detectada no PR."
-          else:
-              prompt = f"Revise o seguinte código e sugira melhorias:\n\n{pr_diff}"
-              response = client.chat.completions.create(
-                  model="gpt-4",
-                  messages=[{"role": "system", "content": "Você é um revisor de código experiente."},
-                            {"role": "user", "content": prompt}]
-              )
-              review = response.choices[0].message.content
-      
-          print("### AI Code Review ###\n", review)
-          with open("ai_review.txt", "w") as file:
-              file.write(review)
-          EOF
-      env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+       - name: 🤖 Executar revisão com ChatGPT
+         id: ai_review
+         run: |
+            python3 - <<EOF
+            import openai
+            import os
+        
+            api_key = os.getenv("OPENAI_API_KEY")
+            client = openai.OpenAI(api_key=api_key)  # Novo cliente compatível com OpenAI v1
+        
+            with open("pr_diff.txt", "r") as file:
+                pr_diff = file.read()
+        
+            if not pr_diff.strip():
+                review = "Nenhuma alteração detectada no PR."
+            else:
+                prompt = f"Revise o seguinte código e sugira melhorias:\n\n{pr_diff}"
+                response = client.chat.completions.create(
+                    model="gpt-4",
+                    messages=[{"role": "system", "content": "Você é um revisor de código experiente."},
+                              {"role": "user", "content": prompt}]
+                )
+                review = response.choices[0].message.content
+        
+            print("### AI Code Review ###\n", review)
+            with open("ai_review.txt", "w") as file:
+                file.write(review)
+            EOF
+        env:
+            OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
       - name: 💬 Comentar no PR
         run: |
