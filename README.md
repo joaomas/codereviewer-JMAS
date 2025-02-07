@@ -1,6 +1,4 @@
-# teste PR com chatgpt
-
-alterando para teste do code review
+PR - OK
 
 # codereviewer
 Tool for automated Fortran Code Review based on GCC rules
